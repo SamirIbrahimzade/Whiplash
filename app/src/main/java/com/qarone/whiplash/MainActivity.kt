@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,8 +17,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.qarone.whiplash.domain.GetCurrentMonthDaysUseCase
 import com.qarone.whiplash.domain.model.ProgressDay
+import com.qarone.whiplash.ui.StartButton
 import com.qarone.whiplash.ui.theme.WhiplashTheme
 
 class MainActivity : ComponentActivity() {
@@ -74,19 +72,6 @@ fun Timer(modifier: Modifier = Modifier, minutes: String, seconds: String) {
 }
 
 @Composable
-fun StartButton() {
-    Button(
-        onClick = {},
-        modifier = Modifier.padding(top = 24.dp),
-        border = BorderStroke(0.5.dp, Color.DarkGray),
-        shape = RoundedCornerShape(4.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent, contentColor = Color.LightGray)
-    ) {
-        Text(text = "Start", fontSize = 20.sp, modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp))
-    }
-}
-
-@Composable
 fun MonthProgress(modifier: Modifier = Modifier, monthDays: List<ProgressDay>) {
     LazyVerticalGrid(
         modifier = modifier
@@ -122,10 +107,10 @@ fun TimerPreview() {
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun MonthProgressPreview() {
-//    WhiplashTheme {
-//        MonthProgress()
-//    }
-//}
+@Preview(showBackground = true)
+@Composable
+fun MonthProgressPreview() {
+    WhiplashTheme {
+        MonthProgress(monthDays = GetCurrentMonthDaysUseCase()())
+    }
+}
