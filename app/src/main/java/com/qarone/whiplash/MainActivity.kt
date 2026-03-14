@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import com.qarone.whiplash.domain.GetCurrentMonthDaysUseCase
 import com.qarone.whiplash.domain.model.ProgressDay
 import com.qarone.whiplash.ui.StartButton
+import com.qarone.whiplash.ui.TopNavigation
 import com.qarone.whiplash.ui.theme.WhiplashTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +41,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             WhiplashTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = { TopNavigation() }
+                ) { innerPadding ->
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
